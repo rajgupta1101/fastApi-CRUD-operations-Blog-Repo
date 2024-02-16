@@ -2,7 +2,9 @@
 
 
 
-steps:
+steps to run the project:
+
+
 1.python3 -m venv fastapi-env    ---- create virtual environment
 
 

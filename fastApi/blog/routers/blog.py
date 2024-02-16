@@ -21,7 +21,8 @@ def all(db:Session=Depends(get_db),current_user:schemas.User=Depends(oauth2.get_
 
 @router.get('/{id}',status_code=status.HTTP_200_OK,response_model=schemas.ShowBlog)
 def show(id,response:Response,db:Session=Depends(get_db),current_user:schemas.User=Depends(oauth2.get_current_user)):
-    return blog.show(db,id,response)
+    breakpoint()
+    return blog.show(id,db,response)
 
 
 @router.post('/',status_code=status.HTTP_201_CREATED)

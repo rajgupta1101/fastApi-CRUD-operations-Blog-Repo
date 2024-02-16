@@ -7,7 +7,7 @@ def get_all(db:Session):
     return blogs
     
     
-def create(request:schemas.Blog,db:Session):
+def create(db:Session,request:schemas.Blog):
     new_blog=models.Blog(title=request.title,body=request.body,user_id=1)
     db.add(new_blog)
     db.commit()
@@ -22,7 +22,7 @@ def destroy(id:int,db:Session):
     db.commit()
     return {'data':'detele successfully'}
 
-def update(id:int,request:schemas.Blog,db:Session):
+def update(id:int,db:Session,request:schemas.Blog):
     blog=db.query(models.Blog).filter(models.Blog.id==id)
     if not blog.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"blog not found with {id} id ")
@@ -32,6 +32,7 @@ def update(id:int,request:schemas.Blog,db:Session):
     return 'updated'
 
 def show(id:int,db:Session,response):
+    breakpoint()
     blog=db.query(models.Blog).filter(models.Blog.id==id).first()
     if not blog:
         # raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"blog not fount with id {id}")
